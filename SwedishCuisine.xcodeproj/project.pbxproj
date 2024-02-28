@@ -15,6 +15,8 @@
 		F5B474682B8E282F00BCB526 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B474672B8E282F00BCB526 /* LandingViewController.swift */; };
 		F5B4746A2B8E3EF400BCB526 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B474692B8E3EF400BCB526 /* SignUpViewController.swift */; };
 		F5B4746C2B8E5EB400BCB526 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B4746B2B8E5EB400BCB526 /* LoginViewController.swift */; };
+		F5B4746F2B8E85FF00BCB526 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B4746E2B8E85FF00BCB526 /* DBManager.swift */; };
+		F5B474712B8E9ED600BCB526 /* RestaurantTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B474702B8E9ED600BCB526 /* RestaurantTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		F5B474672B8E282F00BCB526 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		F5B474692B8E3EF400BCB526 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F5B4746B2B8E5EB400BCB526 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F5B4746E2B8E85FF00BCB526 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		F5B474702B8E9ED600BCB526 /* RestaurantTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,9 +64,12 @@
 		F54002B92B8DE6DD00ED52D3 /* SwedishCuisine */ = {
 			isa = PBXGroup;
 			children = (
+				F5B4746D2B8E85DA00BCB526 /* Database */,
 				F54002BA2B8DE6DD00ED52D3 /* AppDelegate.swift */,
 				F54002BC2B8DE6DD00ED52D3 /* SceneDelegate.swift */,
 				F5B4746B2B8E5EB400BCB526 /* LoginViewController.swift */,
+				F5B4746E2B8E85FF00BCB526 /* DBManager.swift */,
+				F5B474702B8E9ED600BCB526 /* RestaurantTabBarController.swift */,
 				F5B474692B8E3EF400BCB526 /* SignUpViewController.swift */,
 				F5B474672B8E282F00BCB526 /* LandingViewController.swift */,
 				F54002C02B8DE6DD00ED52D3 /* Main.storyboard */,
@@ -71,6 +78,13 @@
 				F54002C82B8DE6E200ED52D3 /* Info.plist */,
 			);
 			path = SwedishCuisine;
+			sourceTree = "<group>";
+		};
+		F5B4746D2B8E85DA00BCB526 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,6 +159,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F54002BB2B8DE6DD00ED52D3 /* AppDelegate.swift in Sources */,
+				F5B4746F2B8E85FF00BCB526 /* DBManager.swift in Sources */,
+				F5B474712B8E9ED600BCB526 /* RestaurantTabBarController.swift in Sources */,
 				F5B474682B8E282F00BCB526 /* LandingViewController.swift in Sources */,
 				F5B4746A2B8E3EF400BCB526 /* SignUpViewController.swift in Sources */,
 				F5B4746C2B8E5EB400BCB526 /* LoginViewController.swift in Sources */,
