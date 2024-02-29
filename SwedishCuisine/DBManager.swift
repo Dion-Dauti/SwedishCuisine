@@ -14,7 +14,11 @@ class DatabaseHelper {
     
     private var db: OpaquePointer?
     private let dbPath = "/Users/dadi222/Documents/SwedishCuisine.db"
-
+    static var currentUsername: String?
+    static var accessedUsername: String {
+        get {
+            return currentUsername ?? ""
+        }}
     init() {
         // Open the database
         if sqlite3_open(dbPath, &db) != SQLITE_OK {
@@ -72,6 +76,7 @@ class DatabaseHelper {
             sqlite3_bind_text(statement, 2, (passwordHash as NSString).utf8String, -1, nil)
 
             if sqlite3_step(statement) == SQLITE_ROW {
+                DatabaseHelper.currentUsername = username
                 sqlite3_finalize(statement)
                 return true // User found
             } else {
@@ -158,6 +163,86 @@ class DatabaseHelper {
                 return false
             }
         }
+    
+
+        func insertBooking(tableNumber: Int, seats: Int, reservationDate: Date, startTime: Date, endTime: Date) -> Bool {
+            let username = DatabaseHelper.accessedUsername
+               
+
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+
+            let timeFormatter = DateFormatter()
+            timeFormatter.dateFormat = "HH:mm:ss"
+
+            let formattedDate = dateFormatter.string(from: reservationDate)
+            let formattedStartTime = timeFormatter.string(from: startTime)
+            let formattedEndTime = timeFormatter.string(from: endTime)
+
+            let query = """
+                INSERT INTO bookings (customer_id, table_number, seats, reservation_date, start_time, end_time)
+                VALUES ((SELECT costumer_id FROM customers WHERE username = ?), ?, ?, ?, ?, ?)
+                """
+            var statement: OpaquePointer? = nil
+
+            if sqlite3_prepare_v2(db, query, -1, &statement, nil) == SQLITE_OK {
+                sqlite3_bind_text(statement, 1, (username as NSString).utf8String, -1, nil)
+                sqlite3_bind_int(statement, 2, Int32(tableNumber))
+                sqlite3_bind_int(statement, 3, Int32(seats))
+                sqlite3_bind_text(statement, 4, (formattedDate as NSString).utf8String, -1, nil)
+                sqlite3_bind_text(statement, 5, (formattedStartTime as NSString).utf8String, -1, nil)
+                sqlite3_bind_text(statement, 6, (formattedEndTime as NSString).utf8String, -1, nil)
+
+                if sqlite3_step(statement) == SQLITE_DONE {
+                    sqlite3_finalize(statement)
+                    return true
+                } else {
+                    print("Error inserting booking")
+                }
+            } else {
+                print("Error preparing booking insert")
+            }
+            sqlite3_finalize(statement)
+            return false
+        }
+    
+    func fetchBookings() -> [Booking] {
+        let query = """
+            SELECT table_number, seats, reservation_date, start_time, end_time
+            FROM bookings
+            WHERE customer_id = (SELECT costumer_id FROM customers WHERE username = ?)
+            """
+        var statement: OpaquePointer? = nil
+        var bookings: [Booking] = []
+
+        if sqlite3_prepare_v2(db, query, -1, &statement, nil) == SQLITE_OK {
+            sqlite3_bind_text(statement, 1, (DatabaseHelper.accessedUsername as NSString).utf8String, -1, nil)
+
+            while sqlite3_step(statement) == SQLITE_ROW {
+                let tableNumber = sqlite3_column_int(statement, 0)
+                let seats = sqlite3_column_int(statement, 1)
+
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                let reservationDate = dateFormatter.date(from: String(cString: sqlite3_column_text(statement, 2))) ?? Date()
+
+                let timeFormatter = DateFormatter()
+                timeFormatter.dateFormat = "HH:mm:ss"
+                let startTime = timeFormatter.date(from: String(cString: sqlite3_column_text(statement, 3))) ?? Date()
+                let endTime = timeFormatter.date(from: String(cString: sqlite3_column_text(statement, 4))) ?? Date()
+
+                let booking = Booking(tableNumber: Int(tableNumber), seats: Int(seats), reservationDate: reservationDate, startTime: startTime, endTime: endTime)
+                bookings.append(booking)
+            }
+        } else {
+            print("Error preparing booking fetch statement: \(String(cString: sqlite3_errmsg(db)))")
+        }
+
+        sqlite3_finalize(statement)
+        return bookings
+    }
+
+
 
     func hashPassword(_ password: String) -> String {
             let data = password.data(using: .utf8)!

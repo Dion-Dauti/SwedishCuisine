@@ -17,7 +17,6 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-
         loadMenuItemsFromDatabase() // Load data on view load
     }
 
@@ -36,7 +35,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         let menuItem = menuItems[indexPath.row]
         cell.dishName.text = menuItem.name
-        cell.dishPrice.text = "$\(menuItem.price)"
+        cell.dishPrice.text = "\(menuItem.price) kr"
 
         // Image loading (Assuming you have images stored locally):
         if let image = UIImage(contentsOfFile: menuItem.image) {
@@ -47,6 +46,10 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
 
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120 // Replace with your desired height
     }
 }
 

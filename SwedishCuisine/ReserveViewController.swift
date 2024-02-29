@@ -32,12 +32,14 @@ class ReserveViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         styleStackView(stackView)
         styleStackView(dateStack)
         styleStackView(timeStack)
         styleStackView(tableStack)
         
         confirmButton.layer.cornerRadius = 10
+        
 
         confirmButton.backgroundColor = UIColor(red: 254/255.0, green: 204/255.0, blue: 2/255.0, alpha: 1.0)
     }
@@ -71,13 +73,21 @@ class ReserveViewController: UIViewController {
                 alert.addAction(UIAlertAction(title: "Ok", style: .default))
                 present(alert, animated: true)
             } else {
-                
-                print("We are good till here")
-                // Create a booking and insert into the database (add proper error handling)
-//                let booking = Booking(tableNumber: tableNumber, seats: numberOfSeats, reservationDate: reservationDate, startTime: startTime, endTime: endTime)
-                // ... Add a function to DBManager to insert a booking
+                if databaseHelper.insertBooking(tableNumber: tableNumber, seats: numberOfSeats, reservationDate: reservationDate, startTime: startTime, endTime: endTime) {
+                    NotificationCenter.default.post(name: Notification.Name("BookingCreated"), object: nil)
+
+                    // Show success alert
+                    let alert = UIAlertController(title: "Success", message: "Reservation booked successfully!", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default))
+                    present(alert, animated: true)
+                } else {
+                    // Error handling
+                    let alert = UIAlertController(title: "Error", message: "Failed to create reservation.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default))
+                    present(alert, animated: true)
+                }
             }
-    }
+        }
     private func updateTableLabel() {
         tableNumber.text = "\(currentValue)"
     }

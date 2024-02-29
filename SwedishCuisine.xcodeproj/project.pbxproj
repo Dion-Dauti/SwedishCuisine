@@ -21,6 +21,9 @@
 		F5B4746C2B8E5EB400BCB526 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B4746B2B8E5EB400BCB526 /* LoginViewController.swift */; };
 		F5B4746F2B8E85FF00BCB526 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B4746E2B8E85FF00BCB526 /* DBManager.swift */; };
 		F5B474712B8E9ED600BCB526 /* RestaurantTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B474702B8E9ED600BCB526 /* RestaurantTabBarController.swift */; };
+		F5F04B002B90A61D0006A929 /* BookingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F04AFF2B90A61D0006A929 /* BookingsViewController.swift */; };
+		F5F04B022B90CCCF0006A929 /* BookingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F04B012B90CCCF0006A929 /* BookingModel.swift */; };
+		F5F04B042B90CE830006A929 /* BookingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F04B032B90CE830006A929 /* BookingViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		F5B4746B2B8E5EB400BCB526 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F5B4746E2B8E85FF00BCB526 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		F5B474702B8E9ED600BCB526 /* RestaurantTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTabBarController.swift; sourceTree = "<group>"; };
+		F5F04AFF2B90A61D0006A929 /* BookingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingsViewController.swift; sourceTree = "<group>"; };
+		F5F04B012B90CCCF0006A929 /* BookingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingModel.swift; sourceTree = "<group>"; };
+		F5F04B032B90CE830006A929 /* BookingViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,10 +90,13 @@
 				F54002C02B8DE6DD00ED52D3 /* Main.storyboard */,
 				F567BC622B8FEA9A00A934CD /* ReserveViewController.swift */,
 				F567BC602B8FBCF400A934CD /* MenuItemViewCell.swift */,
+				F567BC5E2B8FB69700A934CD /* MenuViewController.swift */,
+				F5F04AFF2B90A61D0006A929 /* BookingsViewController.swift */,
 				F54002C32B8DE6E200ED52D3 /* Assets.xcassets */,
 				F54002C52B8DE6E200ED52D3 /* LaunchScreen.storyboard */,
 				F54002C82B8DE6E200ED52D3 /* Info.plist */,
-				F567BC5E2B8FB69700A934CD /* MenuViewController.swift */,
+				F5F04B012B90CCCF0006A929 /* BookingModel.swift */,
+				F5F04B032B90CE830006A929 /* BookingViewCell.swift */,
 			);
 			path = SwedishCuisine;
 			sourceTree = "<group>";
@@ -172,12 +181,15 @@
 			files = (
 				F54002BB2B8DE6DD00ED52D3 /* AppDelegate.swift in Sources */,
 				F567BC632B8FEA9A00A934CD /* ReserveViewController.swift in Sources */,
+				F5F04B002B90A61D0006A929 /* BookingsViewController.swift in Sources */,
+				F5F04B022B90CCCF0006A929 /* BookingModel.swift in Sources */,
 				F5B4746F2B8E85FF00BCB526 /* DBManager.swift in Sources */,
 				F567BC612B8FBCF400A934CD /* MenuItemViewCell.swift in Sources */,
 				F567BC592B8F9D2800A934CD /* MenuItemModel.swift in Sources */,
 				F5B474712B8E9ED600BCB526 /* RestaurantTabBarController.swift in Sources */,
 				F567BC5F2B8FB69700A934CD /* MenuViewController.swift in Sources */,
 				F5B474682B8E282F00BCB526 /* LandingViewController.swift in Sources */,
+				F5F04B042B90CE830006A929 /* BookingViewCell.swift in Sources */,
 				F5B4746A2B8E3EF400BCB526 /* SignUpViewController.swift in Sources */,
 				F5B4746C2B8E5EB400BCB526 /* LoginViewController.swift in Sources */,
 				F54002BD2B8DE6DD00ED52D3 /* SceneDelegate.swift in Sources */,

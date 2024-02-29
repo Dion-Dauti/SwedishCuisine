@@ -10,6 +10,8 @@ import UIKit
 
 class SignUpViewController: UIViewController {
 
+    @IBOutlet weak var getStartedButton: UIButton!
+    
     @IBOutlet weak var usernameTextField: UITextField!
     
     @IBOutlet weak var emailTextField: UITextField!
@@ -20,7 +22,8 @@ class SignUpViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        getStartedButton.layer.cornerRadius = 10
+        getStartedButton.backgroundColor = UIColor(red: 0, green: 106/255.0, blue: 167/255.0, alpha: 1.0)
         // Do any additional setup after loading the view.
     }
     
@@ -59,6 +62,11 @@ class SignUpViewController: UIViewController {
         if databaseHelper.insertUser(username: username, email: email, passwordHash: passwordHash) {
             showAlert(title: "Success", message: "Account created! You can now log in.")
             performSegue(withIdentifier: "ToLoginFromSignUp", sender: nil)
+            usernameTextField.text = ""
+            emailTextField.text = ""
+            passwordTextField.text = ""
+            
+            
         } else {
             showAlert(title: "Error", message: "Failed to create an account. Please try again.")
         }

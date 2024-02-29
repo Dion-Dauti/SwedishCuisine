@@ -8,11 +8,18 @@
 import UIKit
 
 class LandingViewController: UIViewController {
-
+    @IBOutlet weak var loginButton: UIButton!
+    
+    @IBOutlet weak var createAccButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        loginButton.layer.cornerRadius = 10
+        loginButton.backgroundColor = UIColor(red: 254/255.0, green: 204/255.0, blue: 2/255.0, alpha: 1.0)
+        
+        createAccButton.layer.cornerRadius = 10
+        createAccButton.backgroundColor = UIColor(red: 0, green: 106/255.0, blue: 167/255.0, alpha: 1.0)
     }
     
 

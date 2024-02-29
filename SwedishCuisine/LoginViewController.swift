@@ -19,8 +19,9 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        loginButton.layer.cornerRadius = 10
+        loginButton.backgroundColor = UIColor(red: 254/255.0, green: 204/255.0, blue: 2/255.0, alpha: 1.0)
     }
     
     @IBAction func loginTapped(_ sender: UIButton) {
@@ -32,6 +33,8 @@ class LoginViewController: UIViewController {
                                    passwordHash: hashedPassword)
         {
             performSegue(withIdentifier: "ToHomeFromLogin", sender: nil)
+            usernameField.text = ""
+            passwordField.text = ""
         }
         else {
             showAlert(title: "Error", message: "Incorrect username or password!")
