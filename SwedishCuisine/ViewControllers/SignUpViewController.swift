@@ -24,7 +24,6 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         getStartedButton.layer.cornerRadius = 10
         getStartedButton.backgroundColor = UIColor(red: 0, green: 106/255.0, blue: 167/255.0, alpha: 1.0)
-        // Do any additional setup after loading the view.
     }
     
 
@@ -44,6 +43,16 @@ class SignUpViewController: UIViewController {
             return
         }
 
+        if databaseHelper.userExists(username: username) {
+                    showAlert(title: "Duplicate Username", message: "This username is already taken.")
+                    return
+                }
+
+        if databaseHelper.userExists(email: email) {
+                    showAlert(title: "Duplicate Email", message: "An account with this email already exists.")
+                    return
+                }
+        
         // Validate email format using a regular expression
         if !isValidEmail(email) {
             showAlert(title: "Invalid Email", message: "Please enter a valid email address.")
@@ -55,10 +64,9 @@ class SignUpViewController: UIViewController {
             return
         }
 
-        // 2. Hash the password
         let passwordHash = databaseHelper.hashPassword(password)
 
-        // 3. Attempt to insert user into the database
+        // insert user into the database
         if databaseHelper.insertUser(username: username, email: email, passwordHash: passwordHash) {
             showAlert(title: "Success", message: "Account created! You can now log in.")
             performSegue(withIdentifier: "ToLoginFromSignUp", sender: nil)

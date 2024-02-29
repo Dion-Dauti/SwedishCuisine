@@ -20,7 +20,8 @@ class ReserveViewController: UIViewController {
     @IBOutlet weak var fromTime: UIDatePicker!
     
     @IBOutlet weak var untilTime: UIDatePicker!
-    private var currentValue = 1 // Set initial value
+    // Set initial value
+    private var currentValue = 1
     
     // Confirm Button
     @IBOutlet weak var confirmButton: UIButton!
@@ -45,11 +46,13 @@ class ReserveViewController: UIViewController {
     }
     
     @IBAction func decrementTapped(_ sender: UIButton) {
-        currentValue = max(1, currentValue - 1) // Prevent going below 1
+        // Prevent going below 1
+        currentValue = max(1, currentValue - 1)
             updateTableLabel()
     }
     @IBAction func incrementTapped(_ sender: UIButton) {
-        currentValue = min(20, currentValue + 1) // Prevent going above 20
+        // Prevent going above 20
+        currentValue = min(20, currentValue + 1)
         updateTableLabel()
     }
     @IBAction func stepperTapped(_ sender: UIStepper) {
@@ -59,7 +62,8 @@ class ReserveViewController: UIViewController {
     }
     
     @IBAction func confirmButtonTapped(_ sender: UIButton) {
-        let tableNumber = Int(tableNumber.text!) ?? 1 // Use a default table if invalid
+        // Use a default table if invalid
+        let tableNumber = Int(tableNumber.text!) ?? 1
             let reservationDate = date.date
             let startTime = fromTime.date
             let endTime = untilTime.date
@@ -68,7 +72,7 @@ class ReserveViewController: UIViewController {
             let databaseHelper = DatabaseHelper()
 
             if databaseHelper.hasConflictingBooking(tableNumber: tableNumber, reservationDate: reservationDate, startTime: startTime, endTime: endTime) {
-                // Show alert: "Reservation conflicts with existing booking"
+                // Show the alert
                 let alert = UIAlertController(title: "Conflict", message: "Reservation conflicts with existing booking", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default))
                 present(alert, animated: true)

@@ -79,24 +79,15 @@
 			isa = PBXGroup;
 			children = (
 				F5B4746D2B8E85DA00BCB526 /* Database */,
+				F5F04B052B90E6100006A929 /* ViewControllers */,
+				F5F04B062B90E6980006A929 /* Models */,
+				F5F04B072B90E6E50006A929 /* CostumViewCells */,
 				F54002BA2B8DE6DD00ED52D3 /* AppDelegate.swift */,
 				F54002BC2B8DE6DD00ED52D3 /* SceneDelegate.swift */,
-				F5B4746B2B8E5EB400BCB526 /* LoginViewController.swift */,
-				F5B4746E2B8E85FF00BCB526 /* DBManager.swift */,
-				F5B474702B8E9ED600BCB526 /* RestaurantTabBarController.swift */,
-				F5B474692B8E3EF400BCB526 /* SignUpViewController.swift */,
-				F5B474672B8E282F00BCB526 /* LandingViewController.swift */,
-				F567BC582B8F9D2800A934CD /* MenuItemModel.swift */,
 				F54002C02B8DE6DD00ED52D3 /* Main.storyboard */,
-				F567BC622B8FEA9A00A934CD /* ReserveViewController.swift */,
-				F567BC602B8FBCF400A934CD /* MenuItemViewCell.swift */,
-				F567BC5E2B8FB69700A934CD /* MenuViewController.swift */,
-				F5F04AFF2B90A61D0006A929 /* BookingsViewController.swift */,
 				F54002C32B8DE6E200ED52D3 /* Assets.xcassets */,
 				F54002C52B8DE6E200ED52D3 /* LaunchScreen.storyboard */,
 				F54002C82B8DE6E200ED52D3 /* Info.plist */,
-				F5F04B012B90CCCF0006A929 /* BookingModel.swift */,
-				F5F04B032B90CE830006A929 /* BookingViewCell.swift */,
 			);
 			path = SwedishCuisine;
 			sourceTree = "<group>";
@@ -104,8 +95,41 @@
 		F5B4746D2B8E85DA00BCB526 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				F5B4746E2B8E85FF00BCB526 /* DBManager.swift */,
 			);
 			path = Database;
+			sourceTree = "<group>";
+		};
+		F5F04B052B90E6100006A929 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F5B474692B8E3EF400BCB526 /* SignUpViewController.swift */,
+				F5B474702B8E9ED600BCB526 /* RestaurantTabBarController.swift */,
+				F5B474672B8E282F00BCB526 /* LandingViewController.swift */,
+				F567BC5E2B8FB69700A934CD /* MenuViewController.swift */,
+				F567BC622B8FEA9A00A934CD /* ReserveViewController.swift */,
+				F5F04AFF2B90A61D0006A929 /* BookingsViewController.swift */,
+				F5B4746B2B8E5EB400BCB526 /* LoginViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F5F04B062B90E6980006A929 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F5F04B012B90CCCF0006A929 /* BookingModel.swift */,
+				F567BC582B8F9D2800A934CD /* MenuItemModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F5F04B072B90E6E50006A929 /* CostumViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				F5F04B032B90CE830006A929 /* BookingViewCell.swift */,
+				F567BC602B8FBCF400A934CD /* MenuItemViewCell.swift */,
+			);
+			path = CostumViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

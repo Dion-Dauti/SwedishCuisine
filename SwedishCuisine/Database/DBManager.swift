@@ -78,16 +78,52 @@ class DatabaseHelper {
             if sqlite3_step(statement) == SQLITE_ROW {
                 DatabaseHelper.currentUsername = username
                 sqlite3_finalize(statement)
-                return true // User found
+                return true
             } else {
                 sqlite3_finalize(statement)
-                return false // User not found
+                return false
             }
         } else {
             print("Error preparing login statement: \(String(cString: sqlite3_errmsg(db)))")
             return false
         }
     }
+    
+    func userExists(username: String) -> Bool {
+            let query = "SELECT EXISTS(SELECT 1 FROM customers WHERE username = ?)"
+            var statement: OpaquePointer? = nil
+
+            if sqlite3_prepare_v2(db, query, -1, &statement, nil) == SQLITE_OK {
+                sqlite3_bind_text(statement, 1, (username as NSString).utf8String, -1, nil)
+
+                if sqlite3_step(statement) == SQLITE_ROW {
+                    let exists = sqlite3_column_int(statement, 0) == 1 // 1 if the user exists
+                    sqlite3_finalize(statement)
+                    return exists
+                }
+            }
+            sqlite3_finalize(statement)
+            return false // Handle potential errors conservatively
+        }
+
+    func userExists(email: String) -> Bool {
+            let query = "SELECT EXISTS(SELECT 1 FROM customers WHERE email = ?)"
+            var statement: OpaquePointer? = nil
+
+            if sqlite3_prepare_v2(db, query, -1, &statement, nil) == SQLITE_OK {
+                sqlite3_bind_text(statement, 1, (email as NSString).utf8String, -1, nil)
+
+                if sqlite3_step(statement) == SQLITE_ROW {
+                    let exists = sqlite3_column_int(statement, 0) == 1 // 1 if the user exists
+                    sqlite3_finalize(statement)
+                    return exists
+                }
+            }
+            sqlite3_finalize(statement)
+            return false // Handle potential errors conservatively
+        }  
+    
+    
     
     func fetchMenuItems() -> [MenuItem] {
             let query = "SELECT name, price, image FROM menuItems" 
